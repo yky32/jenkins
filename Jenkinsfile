@@ -2,6 +2,22 @@ pipeline {
   agent any
   stages {
     
+    stage('Promote to Dev?') {
+      steps {
+        milestone 10
+        script {
+          env.DO_RELEASE = input(
+            message: 'Promote to Dev?',
+            ok: 'Apply',
+            parameters: [
+              choice(name: 'Promote', choices: ['Yes', 'No'].join('\n'), description: 'Promote to Dev?')
+            ]
+          )
+        }
+        milestone 20
+       }
+    }
+    
     stage('Start Test?') {
       steps {
         echo 'Start build'
