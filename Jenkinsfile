@@ -1,7 +1,6 @@
 pipeline {
   agent any
   stages {
-    
     stage('Promote to Dev?') {
       steps {
         milestone 10
@@ -14,21 +13,21 @@ pipeline {
             ]
           )
         }
+
         milestone 20
-       }
+      }
     }
-    
+
     stage('Start Test?') {
       steps {
         echo 'Start build'
       }
     }
-    
+
     stage('Test') {
       parallel {
         stage('Test') {
           steps {
-            input(message: 'Start?', ok: 'Yes')
             echo 'Start Test'
           }
         }
