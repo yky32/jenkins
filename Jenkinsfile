@@ -48,6 +48,12 @@ pipeline {
     }
 
     stage('Building') {
+      when { 
+        beforeAgent true; 
+        allOf { 
+          branch 'master'; environment name: 'DO_RELEASE', value: 'Yes' 
+        } 
+      }
       steps {
         echo 'Start build'
       }
