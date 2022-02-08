@@ -2,9 +2,20 @@ pipeline {
   agent any
   stages {
     stage('Test') {
-      steps {
-        input(message: 'Start?', ok: 'Yes')
-        echo 'Start Test'
+      parallel {
+        stage('Test') {
+          steps {
+            input(message: 'Start?', ok: 'Yes')
+            echo 'Start Test'
+          }
+        }
+
+        stage('Test 2') {
+          steps {
+            echo 'Test 2'
+          }
+        }
+
       }
     }
 
