@@ -4,7 +4,7 @@ pipeline {
     stage('Test') {
       steps {
         echo 'Start Test'
-        input 'Skip?'
+        input(message: 'Skip?', id: 'TestingId', ok: 'TestingOk', submitter: '123', submitterParameter: '111')
       }
     }
 
