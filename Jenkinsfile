@@ -1,12 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Promote to Dev?') {
+    stage('Is Hotfix?') {
       steps {
         milestone 10
         script {
           env.DO_RELEASE = input(
-            message: 'Promote to Dev?',
+            message: 'Is Hotfix?',
             ok: 'Apply',
             parameters: [
               choice(name: 'Promote', choices: ['Yes', 'No'].join('\n'), description: 'Promote to Dev?')
@@ -18,13 +18,13 @@ pipeline {
       }
     }
 
-    stage('Start Test?') {
-      steps {
-        echo 'Start build'
-      }
-    }
-
     stage('Test') {
+      when { 
+        beforeAgent true; 
+        allOf { 
+          environment name: 'DO_RELEASE', value: 'NO' 
+        } 
+      }
       parallel {
         stage('Test') {
           steps {
