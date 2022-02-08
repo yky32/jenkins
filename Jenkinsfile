@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Test') {
       steps {
+        input(message: 'Start?', ok: 'Yes')
         echo 'Start Test'
-        input(message: 'Skip?', id: 'TestingId', ok: 'TestingOk', submitter: '123', submitterParameter: '111')
       }
     }
 
