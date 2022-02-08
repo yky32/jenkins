@@ -51,7 +51,7 @@ pipeline {
       when { 
         beforeAgent true; 
         allOf { 
-          branch 'master'; environment name: 'DO_RELEASE', value: 'Yes' 
+          environment name: 'DO_RELEASE', value: 'Yes' 
         } 
       }
       steps {
