@@ -16,6 +16,14 @@ pipeline {
         milestone 20
       }
     }
+    
+    stages {
+        stage("Env Variables") {
+            steps {
+                sh "printenv"
+            }
+        }
+    }
 
     stage('Test') {
       when { 
