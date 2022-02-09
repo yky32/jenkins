@@ -62,6 +62,7 @@ pipeline {
       when { 
         beforeAgent true; 
         allOf { 
+          branch 'PR-*'
           environment name: 'DO_RELEASE', value: 'Yes' 
         } 
       }
