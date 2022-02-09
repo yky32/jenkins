@@ -18,9 +18,15 @@ pipeline {
     }
     
     stage("Env Variables of J") {
-        steps {
-            sh "printenv"
-        }
+      when { 
+        beforeAgent true; 
+        anyOf { 
+          branch 'main'; 
+        } 
+      }
+      steps {
+         sh "printenv" 
+      }
     }
 
     stage('Test') {
@@ -60,7 +66,7 @@ pipeline {
         } 
       }
       steps {
-        echo 'Start build' + env.BRANCH_NAME
+        echo 'Start build ' + env.GITHUB_PR_SOURCE_BRANCH
       }
     }
 
