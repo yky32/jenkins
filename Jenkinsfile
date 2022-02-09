@@ -54,7 +54,7 @@ pipeline {
         } 
       }
       steps {
-        echo 'Start build'
+        echo 'Start build' + env.BRANCH_NAME
       }
     }
 
