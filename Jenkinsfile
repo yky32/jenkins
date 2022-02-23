@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Is Hotfix?') {
+    stage('Is Hotfix? v2') {
       steps {
         milestone 10
         script {
