@@ -1,6 +1,20 @@
 pipeline {
   agent any
   stages {
+    stage('Testing branch name?') {
+      steps {
+        milestone 10
+        script {
+          if (env.CHANGE_BRANCH.contains("hotfix/")) {
+            echo 'its hotfix/ ' + env.CHANGE_BRANCH
+          } else {
+            echo 'its not hotfix!! ' + env.CHANGE_BRANCH
+          }
+        }
+        milestone 20
+      }
+    }
+    
     stage('Is Hotfix? v2') {
       steps {
         milestone 10
