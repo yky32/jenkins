@@ -1,22 +1,22 @@
 pipeline {
   agent any
   stages {
-    stage('Is Hotfix? v2') {
+    stage('Testing branch name?') {
       steps {
-        milestone 10
+        milestone 1
         script {
-          env.DO_RELEASE = input(
-            message: 'Is Hotfix?',
-            ok: 'Apply',
-            parameters: [
-              choice(name: 'Promote', choices: ['Yes', 'No'].join('\n'), description: 'Promote to Dev?')
-            ]
-          )
+          if (env.CHANGE_BRANCH.contains("hotfix/")) {
+            env.DO_RELEASE='Yes'
+            echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
+          } else {
+            env.DO_RELEASE='No'
+            echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
+          }
         }
-        milestone 20
+        milestone 9
       }
     }
-    
+   
     stage("Env Variables of Je") {
       when { 
         beforeAgent true; 
@@ -62,12 +62,11 @@ pipeline {
       when { 
         beforeAgent true; 
         allOf { 
-          branch 'PR-*'
           environment name: 'DO_RELEASE', value: 'Yes' 
         } 
       }
       steps {
-        echo 'Start build ' + env.GITHUB_PR_SOURCE_BRANCH
+        echo 'Start build ' + env.CHANGE_BRANCH
       }
     }
 
