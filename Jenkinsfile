@@ -3,15 +3,17 @@ pipeline {
   stages {
     stage('Testing branch name?') {
       steps {
-        milestone 10
+        milestone 1
         script {
           if (env.CHANGE_BRANCH.contains("hotfix/")) {
-            echo 'its hotfix/ ' + env.CHANGE_BRANCH
+            env.DO_RELEASE=Yes
+            echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
           } else {
-            echo 'its not hotfix!! ' + env.CHANGE_BRANCH
+            env.DO_RELEASE=No
+            echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
           }
         }
-        milestone 20
+        milestone 9
       }
     }
     
