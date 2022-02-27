@@ -5,12 +5,14 @@ pipeline {
       steps {
         milestone 10
         script {
-          if (env.CHANGE_BRANCH.contains("hotfix/")) {
-            env.DO_RELEASE='Yes'
-            echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
-          } else {
-            env.DO_RELEASE='No'
-            echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
+          if (env.CHANGE_BRANCH) {
+            if (env.CHANGE_BRANCH.contains("hotfix/")) {
+              env.DO_RELEASE='Yes'
+              echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
+            } else {
+              env.DO_RELEASE='No'
+              echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
+            }
           }
         }
         milestone 20
@@ -33,7 +35,7 @@ pipeline {
       when { 
         beforeAgent true; 
         allOf { 
-          environment name: 'DO_RELEASE', value: 'NO' 
+          environment name: 'DO_RELEASE', value: 'No' 
         } 
       }
       parallel {
