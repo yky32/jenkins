@@ -16,23 +16,7 @@ pipeline {
         milestone 9
       }
     }
-    
-    stage('Is Hotfix? v2') {
-      steps {
-        milestone 10
-        script {
-          env.DO_RELEASE = input(
-            message: 'Is Hotfix?',
-            ok: 'Apply',
-            parameters: [
-              choice(name: 'Promote', choices: ['Yes', 'No'].join('\n'), description: 'Promote to Dev?')
-            ]
-          )
-        }
-        milestone 20
-      }
-    }
-    
+   
     stage("Env Variables of Je") {
       when { 
         beforeAgent true; 
@@ -78,7 +62,6 @@ pipeline {
       when { 
         beforeAgent true; 
         allOf { 
-          branch 'PR-*'
           environment name: 'DO_RELEASE', value: 'Yes' 
         } 
       }
