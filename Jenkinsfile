@@ -6,10 +6,10 @@ pipeline {
         milestone 1
         script {
           if (env.CHANGE_BRANCH.contains("hotfix/")) {
-            env.DO_RELEASE=Yes
+            env.DO_RELEASE='Yes'
             echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
           } else {
-            env.DO_RELEASE=No
+            env.DO_RELEASE='No'
             echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
           }
         }
