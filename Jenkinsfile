@@ -67,7 +67,7 @@ pipeline {
         } 
       }
       steps {
-        echo 'Start build ' + env.GITHUB_PR_SOURCE_BRANCH
+        echo 'Start build ' + env.CHANGE_BRANCH
       }
     }
 
