@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Testing branch name?') {
       steps {
-        milestone 1
+        milestone 10
         script {
           if (env.CHANGE_BRANCH.contains("hotfix/")) {
             env.DO_RELEASE='Yes'
@@ -13,11 +13,11 @@ pipeline {
             echo 'its hotfix/ ' + env.CHANGE_BRANCH + env.DO_RELEASE
           }
         }
-        milestone 9
+        milestone 20
       }
     }
    
-    stage("Env Variables of Je") {
+    stage("Env Variables") {
       when { 
         beforeAgent true; 
         anyOf { 
