@@ -17,7 +17,7 @@ pipeline {
       }
     }
    
-    stage("Env Variables of Je") {
+    stage("Env Variables of Ge") {
       when { 
         beforeAgent true; 
         anyOf { 
