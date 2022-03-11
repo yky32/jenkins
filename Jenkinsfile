@@ -2,7 +2,7 @@ pipeline {
   agent any
   stages {
     
-    stage("Env Variables of Ge") {
+    stage("list all when PR-merged in") {
       when { 
         beforeAgent true; 
         anyOf { 
