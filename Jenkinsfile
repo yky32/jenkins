@@ -1,6 +1,20 @@
 pipeline {
   agent any
   stages {
+    
+    stage("Env Variables of Ge") {
+      when { 
+        beforeAgent true; 
+        anyOf { 
+          branch 'main'; 
+        } 
+      }
+      steps {
+         sh "printenv" 
+      }
+    }
+    
+    
     stage('Testing branch name?') {
       steps {
         milestone 1
@@ -17,17 +31,7 @@ pipeline {
       }
     }
    
-    stage("Env Variables of Ge") {
-      when { 
-        beforeAgent true; 
-        anyOf { 
-          branch 'main'; 
-        } 
-      }
-      steps {
-         sh "printenv" 
-      }
-    }
+   
 
     stage('Test') {
       when { 
