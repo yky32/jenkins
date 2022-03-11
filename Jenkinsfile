@@ -5,8 +5,6 @@ pipeline {
     stage("list all when PR-merged in") {
       when { 
         beforeAgent true; 
-        anyOf { 
-        } 
       }
       steps {
          sh "printenv" 
